@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listín Diario - Sucesos</title>
+    <title>Listín Diario - Sociales</title>
     
-    <!-- Tailwind CSS (Para el diseño) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts (Para las letras góticas y de noticias) -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Roboto:wght@300;400;500;700;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -17,35 +17,35 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* Fuentes personalizadas */
         .font-gothic { font-family: 'UnifrakturMaguntia', cursive; }
         .font-roboto { font-family: 'Roboto', sans-serif; }
         .font-serif-news { font-family: 'Merriweather', serif; }
         
-        /* Ocultar barra de scroll en el menú */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex justify-center">
 
-    <!-- Simulación de Pantalla de Celular -->
+    <!-- Simulación Móvil -->
     <div class="w-full max-w-md bg-white shadow-2xl min-h-screen relative pb-20 border-x border-gray-300">
         
         <!-- Barra Superior "Hoy interesa" -->
         <div class="bg-white px-3 py-2 text-[10px] text-gray-500 flex items-center whitespace-nowrap overflow-hidden border-b border-gray-100 font-roboto">
             <span class="font-bold text-gray-700 mr-1">Hoy interesa</span>
             <span class="mx-1">•</span>
-            <span class="text-red-600 font-bold">Asalto Banco</span>
+            <span class="text-pink-600 font-bold">San Valentín</span>
             <span class="mx-1">•</span>
-            <span>Policía Nacional</span>
+            <span>Tendencias</span>
             <span class="mx-1">•</span>
-            <span>Jesús Reyes</span>
+            <span>Bodas</span>
             <span class="mx-1">•</span>
-            <span>Prófugos</span>
+            <span>Leimy y Alber</span>
+            <span class="mx-1">•</span>
+            <span>Estilo de Vida</span>
         </div>
 
-        <!-- Cabecera Principal (Logo Listín) -->
+        <!-- Cabecera -->
         <header class="bg-white px-4 py-3 flex justify-between items-center border-b border-dotted border-gray-300 sticky top-0 z-20">
             <button class="text-gray-800">
                 <i data-lucide="menu" class="w-6 h-6"></i>
@@ -60,31 +60,31 @@
             </button>
         </header>
 
-        <!-- Barra Amarilla "NOTICIAS" -->
+        <!-- Barra Amarilla -->
         <div class="bg-[#fceda0] w-full py-2 text-center border-b border-gray-200 shadow-sm z-10">
             <h2 class="text-lg font-extrabold uppercase tracking-wide text-black font-roboto">
                 NOTICIAS
             </h2>
         </div>
 
-        <!-- Menú de Navegación -->
+        <!-- Navegación -->
         <nav class="flex items-center space-x-5 px-4 py-3 overflow-x-auto no-scrollbar whitespace-nowrap text-sm font-medium text-black border-b border-gray-200 font-roboto bg-white">
             <span class="text-black">•</span>
-            <a href="#" class="hover:text-red-700 font-bold text-red-700">Sucesos</a>
+            <a href="#" class="hover:text-pink-600 font-bold text-pink-600">Sociales</a>
             <span>•</span>
-            <a href="#" class="hover:text-gray-600">República</a>
+            <a href="#" class="hover:text-gray-600">Espectáculos</a>
             <span>•</span>
-            <a href="#" class="hover:text-gray-600">Justicia</a>
+            <a href="#" class="hover:text-gray-600">La Vida</a>
             <span>•</span>
-            <a href="#" class="hover:text-gray-600">Mundiales</a>
+            <a href="#" class="hover:text-gray-600">Revista</a>
             <span>•</span>
-            <a href="#" class="hover:text-gray-600">Deportes</a>
+            <a href="#" class="hover:text-gray-600">Viajes</a>
         </nav>
 
-        <!-- Contenido de la Noticia -->
+        <!-- Contenido -->
         <main class="px-4 pt-6 font-roboto">
             
-            <!-- Icono Ad -->
+            <!-- Ad Placeholder -->
             <div class="flex justify-center mb-6">
                <div class="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center text-[10px] text-gray-400">
                  Ad
@@ -93,33 +93,33 @@
 
             <!-- Titular -->
             <div class="mb-4">
-                <span class="uppercase text-xs text-red-600 font-bold tracking-wider mb-2 block">
-                    SUCESOS
+                <span class="uppercase text-xs text-pink-600 font-bold tracking-wider mb-2 block">
+                    LA PAREJA DEL AÑO
                 </span>
                 <h1 class="text-[26px] leading-tight font-bold text-black font-serif-news">
-                    Policía activa búsqueda de Jesús Reyes, vinculado a millonario asalto bancario
+                    Del aula al corazón: Leimy Núñez y Alber Henriquez celebran su amor este 25 de diciembre
                 </h1>
             </div>
 
-            <!-- FOTO DEL SOSPECHOSO -->
+            <!-- FOTO DE LA PAREJA -->
             <div class="relative w-full bg-gray-100 overflow-hidden rounded-sm mb-2 shadow-sm">
                 <div class="aspect-[4/5] bg-gray-200 flex items-center justify-center relative overflow-hidden">
                     
-                    <!-- AQUÍ ESTÁ LA FOTO QUE PEDISTE -->
+                    <!-- AQUÍ ESTÁ TU FOTO: IMG_0787.PNG -->
                     <img 
-                        src="IMG_0786.PNG" 
-                        onerror="this.src='https://via.placeholder.com/400x500?text=Falta+Imagen+IMG_0786.PNG'; this.style.objectFit='contain';"
-                        alt="Jesús Reyes Sospechoso" 
-                        class="w-full h-full object-cover filter contrast-110"
+                        src="IMG_0787.PNG" 
+                        onerror="this.src='https://via.placeholder.com/400x500?text=Falta+Imagen+IMG_0787.PNG'; this.alt='Error cargando imagen';"
+                        alt="Leimy y Alber Juntos" 
+                        class="w-full h-full object-cover filter contrast-105"
                     >
                     
-                    <!-- Etiqueta SE BUSCA -->
-                    <div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1 shadow-md transform rotate-3 border border-white/20">
-                        SE BUSCA
+                    <!-- Etiqueta Especial -->
+                    <div class="absolute bottom-16 left-0 bg-pink-600 text-white text-xs font-bold px-3 py-1 shadow-md rounded-r-md">
+                        ❤️ ¡ANIVERSARIO!
                     </div>
                 </div>
 
-                <!-- Barra inferior de la foto (estilo navegador) -->
+                <!-- Barra inferior estilo navegador -->
                 <div class="absolute bottom-6 left-4 right-4 h-12 bg-white/20 backdrop-blur-md rounded-2xl border border-white/30 flex items-center justify-between px-4 shadow-lg">
                     <div class="w-8 h-8 rounded-full bg-white/30 flex items-center justify-center text-white font-bold text-xs font-serif">
                        LD
@@ -133,34 +133,38 @@
             </div>
 
             <!-- Pie de Foto -->
-            <div class="mb-5 text-sm text-gray-600 font-serif-news italic border-l-4 border-red-600 pl-3">
-                <span class="font-bold text-red-700 not-italic">IDENTIFICADO:</span> Jesús Reyes, señalado como el autor material del hecho.
+            <div class="mb-5 text-sm text-gray-600 font-serif-news italic border-l-4 border-pink-400 pl-3">
+                <span class="font-bold text-pink-700 not-italic">INSEPARABLES:</span> Leimy Núñez y Alber Henriquez han sido nombrados la pareja favorita de las redes sociales.
             </div>
 
-            <!-- Cuerpo del Texto -->
+            <!-- Texto de la Noticia -->
             <div class="text-gray-800 text-lg leading-relaxed space-y-4 font-serif-news">
                 <p>
-                    <span class="font-bold">Santo Domingo.</span> — La Dirección Central de Investigación (DICRIM) ha emitido una orden de captura prioritaria contra <span class="font-bold text-black bg-yellow-100 px-1">Jesús Reyes</span>, el individuo captado en cámaras de seguridad durante el asalto a una entidad bancaria ocurrido la tarde de este lunes.
+                    <span class="font-bold">Santo Domingo.</span> — Lo que comenzó como una amistad entre libros y pasillos universitarios se ha convertido en una de las historias más seguidas y queridas. <span class="font-bold">Leimy Núñez</span> y <span class="font-bold">Alber Henriquez</span> están a solo días de celebrar un hito muy especial.
                 </p>
                 <p>
-                    Según el informe preliminar de la Policía Nacional, Reyes habría ingresado a la sucursal armado, logrando sustraer una suma millonaria en efectivo antes de emprender la huida.
+                    Este próximo <span class="font-bold bg-pink-50 px-1">25 de diciembre</span>, la joven pareja cumplirá oficialmente sus primeros 2 años de relación, consolidando un amor que nació en la Universidad y que ha florecido con el tiempo.
                 </p>
-                <div class="bg-gray-50 p-4 border-l-4 border-gray-800 my-4">
-                    <p class="font-bold text-red-700 text-base italic">
-                        "Cualquier ciudadano que tenga información sobre su paradero debe contactar al 9-1-1 de inmediato. Se garantiza anonimato."
+                <p>
+                    "Son el ejemplo perfecto de complicidad y alegría", comentan sus allegados. La pareja ha sido tendencia recientemente, siendo bautizados cariñosamente por amigos y seguidores como <span class="italic text-pink-700">"La Pareja del Año"</span>.
+                </p>
+                <div class="bg-pink-50 p-4 border-l-4 border-pink-600 my-4 rounded-r-lg">
+                    <p class="font-bold text-gray-700 text-base italic">
+                        "El mejor regalo de Navidad siempre será tenernos el uno al otro. Felices 2 años."
                     </p>
                 </div>
             </div>
 
-            <!-- Botón falso de comentarios -->
-            <div class="mt-8 flex justify-center">
-                <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold py-2 px-6 rounded-full text-sm border border-gray-300">
-                    Ver comentarios (342)
+            <!-- Botón Social -->
+            <div class="mt-8 flex justify-center space-x-4">
+                <button class="bg-white hover:bg-gray-50 text-pink-600 font-bold py-2 px-6 rounded-full text-sm border border-pink-200 shadow-sm flex items-center">
+                    <i data-lucide="heart" class="w-4 h-4 mr-2 fill-current"></i> Me encanta (10.5k)
                 </button>
             </div>
+
         </main>
 
-        <!-- Barra Inferior Fija (Safari Style) -->
+        <!-- Barra Inferior -->
         <div class="fixed bottom-0 left-0 right-0 bg-[#f8f8f8]/95 backdrop-blur border-t border-gray-300 h-20 flex justify-between items-start pt-3 px-6 text-gray-500 max-w-md mx-auto z-50">
             <button class="hover:text-blue-500 transition">
                 <div class="w-5 h-5 border-l-2 border-b-2 border-blue-500 transform rotate-45 ml-1 mt-1"></div>
@@ -178,7 +182,7 @@
 
     </div>
 
-    <!-- Script para los iconos -->
+    <!-- Script Iconos -->
     <script>
         lucide.createIcons();
     </script>
