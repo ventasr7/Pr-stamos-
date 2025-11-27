@@ -5,40 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listín Diario - Sucesos</title>
     
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS (Para el diseño) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts (Para las letras góticas y de noticias) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Roboto:wght@300;400;500;700;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
     
-    <!-- Lucide Icons -->
+    <!-- Iconos -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        .font-gothic {
-            font-family: 'UnifrakturMaguntia', cursive;
-        }
-        .font-roboto {
-            font-family: 'Roboto', sans-serif;
-        }
-        .font-serif-news {
-            font-family: 'Merriweather', serif;
-        }
-        /* Ocultar barra de scroll pero permitir desplazamiento */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        /* Fuentes personalizadas */
+        .font-gothic { font-family: 'UnifrakturMaguntia', cursive; }
+        .font-roboto { font-family: 'Roboto', sans-serif; }
+        .font-serif-news { font-family: 'Merriweather', serif; }
+        
+        /* Ocultar barra de scroll en el menú */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex justify-center">
 
-    <!-- Contenedor Principal (Simulación Móvil) -->
+    <!-- Simulación de Pantalla de Celular -->
     <div class="w-full max-w-md bg-white shadow-2xl min-h-screen relative pb-20 border-x border-gray-300">
         
         <!-- Barra Superior "Hoy interesa" -->
@@ -54,7 +45,7 @@
             <span>Prófugos</span>
         </div>
 
-        <!-- Cabecera / Header -->
+        <!-- Cabecera Principal (Logo Listín) -->
         <header class="bg-white px-4 py-3 flex justify-between items-center border-b border-dotted border-gray-300 sticky top-0 z-20">
             <button class="text-gray-800">
                 <i data-lucide="menu" class="w-6 h-6"></i>
@@ -76,7 +67,7 @@
             </h2>
         </div>
 
-        <!-- Navegación Horizontal -->
+        <!-- Menú de Navegación -->
         <nav class="flex items-center space-x-5 px-4 py-3 overflow-x-auto no-scrollbar whitespace-nowrap text-sm font-medium text-black border-b border-gray-200 font-roboto bg-white">
             <span class="text-black">•</span>
             <a href="#" class="hover:text-red-700 font-bold text-red-700">Sucesos</a>
@@ -88,21 +79,19 @@
             <a href="#" class="hover:text-gray-600">Mundiales</a>
             <span>•</span>
             <a href="#" class="hover:text-gray-600">Deportes</a>
-            <span>•</span>
-            <a href="#" class="hover:text-gray-600">Economía</a>
         </nav>
 
-        <!-- Contenido Principal -->
+        <!-- Contenido de la Noticia -->
         <main class="px-4 pt-6 font-roboto">
             
-            <!-- Publicidad Mock -->
+            <!-- Icono Ad -->
             <div class="flex justify-center mb-6">
                <div class="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center text-[10px] text-gray-400">
                  Ad
                </div>
             </div>
 
-            <!-- Título de la Noticia -->
+            <!-- Titular -->
             <div class="mb-4">
                 <span class="uppercase text-xs text-red-600 font-bold tracking-wider mb-2 block">
                     SUCESOS
@@ -112,17 +101,14 @@
                 </h1>
             </div>
 
-            <!-- IMAGEN PRINCIPAL -->
-            <!-- 
-               IMPORTANTE: Para poner TU FOTO EXACTA:
-               1. Guarda tu foto en la misma carpeta que este archivo HTML.
-               2. Cambia el src de abajo por el nombre de tu archivo (ej: src="mifoto.jpg")
-            -->
+            <!-- FOTO DEL SOSPECHOSO -->
             <div class="relative w-full bg-gray-100 overflow-hidden rounded-sm mb-2 shadow-sm">
                 <div class="aspect-[4/5] bg-gray-200 flex items-center justify-center relative overflow-hidden">
-                    <!-- FOTO: He puesto una de ejemplo. Reemplaza este enlace. -->
+                    
+                    <!-- AQUÍ ESTÁ LA FOTO QUE PEDISTE -->
                     <img 
-                        src="IMG_0782" 
+                        src="IMG_0782.PNG" 
+                        onerror="this.src='https://via.placeholder.com/400x500?text=Falta+Imagen+IMG_0782.PNG'; this.style.objectFit='contain';"
                         alt="Jesús Reyes Sospechoso" 
                         class="w-full h-full object-cover filter contrast-110"
                     >
@@ -133,7 +119,7 @@
                     </div>
                 </div>
 
-                <!-- Barra simulada de navegador iOS -->
+                <!-- Barra inferior de la foto (estilo navegador) -->
                 <div class="absolute bottom-6 left-4 right-4 h-12 bg-white/20 backdrop-blur-md rounded-2xl border border-white/30 flex items-center justify-between px-4 shadow-lg">
                     <div class="w-8 h-8 rounded-full bg-white/30 flex items-center justify-center text-white font-bold text-xs font-serif">
                        LD
@@ -159,29 +145,22 @@
                 <p>
                     Según el informe preliminar de la Policía Nacional, Reyes habría ingresado a la sucursal armado, logrando sustraer una suma millonaria en efectivo antes de emprender la huida.
                 </p>
-                <p>
-                    "Estamos desplegando unidades en todo el territorio nacional. Exhortamos al señor Reyes a que se entregue por la vía que entienda pertinente para evitar enfrentamientos mayores", declaró el vocero de la institución en rueda de prensa.
-                </p>
                 <div class="bg-gray-50 p-4 border-l-4 border-gray-800 my-4">
                     <p class="font-bold text-red-700 text-base italic">
                         "Cualquier ciudadano que tenga información sobre su paradero debe contactar al 9-1-1 de inmediato. Se garantiza anonimato."
                     </p>
                 </div>
-                <p>
-                    Las autoridades han advertido que el sospechoso podría estar armado y es considerado de alta peligrosidad.
-                </p>
             </div>
 
-            <!-- Botón de Leer Más (Falso) -->
+            <!-- Botón falso de comentarios -->
             <div class="mt-8 flex justify-center">
                 <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold py-2 px-6 rounded-full text-sm border border-gray-300">
                     Ver comentarios (342)
                 </button>
             </div>
-
         </main>
 
-        <!-- Barra Inferior Fija (Estilo Safari) -->
+        <!-- Barra Inferior Fija (Safari Style) -->
         <div class="fixed bottom-0 left-0 right-0 bg-[#f8f8f8]/95 backdrop-blur border-t border-gray-300 h-20 flex justify-between items-start pt-3 px-6 text-gray-500 max-w-md mx-auto z-50">
             <button class="hover:text-blue-500 transition">
                 <div class="w-5 h-5 border-l-2 border-b-2 border-blue-500 transform rotate-45 ml-1 mt-1"></div>
@@ -199,10 +178,11 @@
 
     </div>
 
-    <!-- Inicializar Iconos Lucide -->
+    <!-- Script para los iconos -->
     <script>
         lucide.createIcons();
     </script>
 </body>
 </html>
+
 
