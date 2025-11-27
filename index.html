@@ -1,133 +1,208 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>PrestamosPro</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listín Diario - Sucesos</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Roboto:wght@300;400;500;700;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- React & ReactDOM -->
-  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-
-  <!-- Firebase SDK -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import {
-      getAuth,
-      signInAnonymously,
-      signInWithCustomToken,
-      onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-    import {
-      getFirestore,
-      collection,
-      addDoc,
-      updateDoc,
-      deleteDoc,
-      doc,
-      query,
-      onSnapshot,
-      serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-    // ============================
-    // 🔥 CONFIG FIREBASE AQUÍ
-    // ============================
-    const firebaseConfig = JSON.parse(__firebase_config); 
-    const appId = typeof __app_id !== 'undefined' ? __app_id : "default-app-id";
-
-    // Inicializar Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-
-    // ============================
-    // 💻 APLICACIÓN REACT COMPLETA
-    // ============================
-
-    const { useState, useEffect, useMemo } = React;
-
-    function App() {
-      const [user, setUser] = useState(null);
-      const [loans, setLoans] = useState([]);
-      const [loading, setLoading] = useState(true);
-      const [view, setView] = useState("dashboard");
-      const [selectedLoan, setSelectedLoan] = useState(null);
-      const [showReceipt, setShowReceipt] = useState(null);
-      const [deletePinInput, setDeletePinInput] = useState('');
-      const [itemToDelete, setItemToDelete] = useState(null);
-      const [notification, setNotification] = useState(null);
-
-      // --- Autenticación ---
-      useEffect(() => {
-        const init = async () => {
-          try {
-            if (typeof __initial_auth_token !== "undefined" && __initial_auth_token) {
-              await signInWithCustomToken(auth, __initial_auth_token);
-            } else {
-              await signInAnonymously(auth);
-            }
-          } catch (e) {
-            console.error("Error auth:", e);
-          }
-        };
-        init();
-
-        return onAuthStateChanged(auth, setUser);
-      }, []);
-
-      // --- Cargar datos ---
-      useEffect(() => {
-        if (!user) return;
-
-        const q = query(collection(
-          db, "artifacts", appId, "users", user.uid, "loans"
-        ));
-
-        return onSnapshot(q, (snap) => {
-          const data = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-          data.sort((a, b) => b.createdAt?.seconds - a.createdAt?.seconds);
-          setLoans(data);
-          setLoading(false);
-
-          if (selectedLoan) {
-            const updated = data.find(l => l.id === selectedLoan.id);
-            if (updated) setSelectedLoan(updated);
-          }
-        });
-      }, [user, selectedLoan?.id]);
-
-      const NotificationToast = () =>
-        notification ? (
-          <div class="fixed top-4 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-xl z-50">
-            {notification}
-          </div>
-        ) : null;
-
-      // --- Render principal ---
-      return (
-        React.createElement("div", { className: "p-4" },
-          React.createElement(NotificationToast),
-          React.createElement("h1", { className: "text-2xl font-black" }, "PrestamosPro (Frontend listo)")
-        )
-      );
-    }
-
-    // Montar React
-    ReactDOM.createRoot(document.getElementById("root")).render(
-      React.createElement(App)
-    );
-
-  </script>
-
+    <style>
+        .font-gothic {
+            font-family: 'UnifrakturMaguntia', cursive;
+        }
+        .font-roboto {
+            font-family: 'Roboto', sans-serif;
+        }
+        .font-serif-news {
+            font-family: 'Merriweather', serif;
+        }
+        /* Ocultar barra de scroll pero permitir desplazamiento */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
-  <div id="root"></div>
+<body class="bg-gray-100 min-h-screen flex justify-center">
+
+    <!-- Contenedor Principal (Simulación Móvil) -->
+    <div class="w-full max-w-md bg-white shadow-2xl min-h-screen relative pb-20 border-x border-gray-300">
+        
+        <!-- Barra Superior "Hoy interesa" -->
+        <div class="bg-white px-3 py-2 text-[10px] text-gray-500 flex items-center whitespace-nowrap overflow-hidden border-b border-gray-100 font-roboto">
+            <span class="font-bold text-gray-700 mr-1">Hoy interesa</span>
+            <span class="mx-1">•</span>
+            <span class="text-red-600 font-bold">Asalto Banco</span>
+            <span class="mx-1">•</span>
+            <span>Policía Nacional</span>
+            <span class="mx-1">•</span>
+            <span>Jesús Reyes</span>
+            <span class="mx-1">•</span>
+            <span>Prófugos</span>
+        </div>
+
+        <!-- Cabecera / Header -->
+        <header class="bg-white px-4 py-3 flex justify-between items-center border-b border-dotted border-gray-300 sticky top-0 z-20">
+            <button class="text-gray-800">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+            
+            <h1 class="font-gothic text-3xl tracking-wide text-black text-center">
+                Listin Diario
+            </h1>
+
+            <button class="text-blue-500">
+                <i data-lucide="user" class="w-6 h-6 fill-current"></i>
+            </button>
+        </header>
+
+        <!-- Barra Amarilla "NOTICIAS" -->
+        <div class="bg-[#fceda0] w-full py-2 text-center border-b border-gray-200 shadow-sm z-10">
+            <h2 class="text-lg font-extrabold uppercase tracking-wide text-black font-roboto">
+                NOTICIAS
+            </h2>
+        </div>
+
+        <!-- Navegación Horizontal -->
+        <nav class="flex items-center space-x-5 px-4 py-3 overflow-x-auto no-scrollbar whitespace-nowrap text-sm font-medium text-black border-b border-gray-200 font-roboto bg-white">
+            <span class="text-black">•</span>
+            <a href="#" class="hover:text-red-700 font-bold text-red-700">Sucesos</a>
+            <span>•</span>
+            <a href="#" class="hover:text-gray-600">República</a>
+            <span>•</span>
+            <a href="#" class="hover:text-gray-600">Justicia</a>
+            <span>•</span>
+            <a href="#" class="hover:text-gray-600">Mundiales</a>
+            <span>•</span>
+            <a href="#" class="hover:text-gray-600">Deportes</a>
+            <span>•</span>
+            <a href="#" class="hover:text-gray-600">Economía</a>
+        </nav>
+
+        <!-- Contenido Principal -->
+        <main class="px-4 pt-6 font-roboto">
+            
+            <!-- Publicidad Mock -->
+            <div class="flex justify-center mb-6">
+               <div class="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center text-[10px] text-gray-400">
+                 Ad
+               </div>
+            </div>
+
+            <!-- Título de la Noticia -->
+            <div class="mb-4">
+                <span class="uppercase text-xs text-red-600 font-bold tracking-wider mb-2 block">
+                    SUCESOS
+                </span>
+                <h1 class="text-[26px] leading-tight font-bold text-black font-serif-news">
+                    Policía activa búsqueda de Jesús Reyes, vinculado a millonario asalto bancario
+                </h1>
+            </div>
+
+            <!-- IMAGEN PRINCIPAL -->
+            <!-- 
+               IMPORTANTE: Para poner TU FOTO EXACTA:
+               1. Guarda tu foto en la misma carpeta que este archivo HTML.
+               2. Cambia el src de abajo por el nombre de tu archivo (ej: src="mifoto.jpg")
+            -->
+            <div class="relative w-full bg-gray-100 overflow-hidden rounded-sm mb-2 shadow-sm">
+                <div class="aspect-[4/5] bg-gray-200 flex items-center justify-center relative overflow-hidden">
+                    <!-- FOTO: He puesto una de ejemplo. Reemplaza este enlace. -->
+                    <img 
+                        src="IMG_0782" 
+                        alt="Jesús Reyes Sospechoso" 
+                        class="w-full h-full object-cover filter contrast-110"
+                    >
+                    
+                    <!-- Etiqueta SE BUSCA -->
+                    <div class="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-3 py-1 shadow-md transform rotate-3 border border-white/20">
+                        SE BUSCA
+                    </div>
+                </div>
+
+                <!-- Barra simulada de navegador iOS -->
+                <div class="absolute bottom-6 left-4 right-4 h-12 bg-white/20 backdrop-blur-md rounded-2xl border border-white/30 flex items-center justify-between px-4 shadow-lg">
+                    <div class="w-8 h-8 rounded-full bg-white/30 flex items-center justify-center text-white font-bold text-xs font-serif">
+                       LD
+                    </div>
+                    <div class="flex items-center space-x-2 text-white text-sm font-medium drop-shadow-md">
+                       <i data-lucide="lock" class="w-3 h-3"></i>
+                       <span>listindiario.com</span>
+                    </div>
+                    <div class="w-6 h-6 rounded-full border-2 border-white/50"></div>
+                 </div>
+            </div>
+
+            <!-- Pie de Foto -->
+            <div class="mb-5 text-sm text-gray-600 font-serif-news italic border-l-4 border-red-600 pl-3">
+                <span class="font-bold text-red-700 not-italic">IDENTIFICADO:</span> Jesús Reyes, señalado como el autor material del hecho.
+            </div>
+
+            <!-- Cuerpo del Texto -->
+            <div class="text-gray-800 text-lg leading-relaxed space-y-4 font-serif-news">
+                <p>
+                    <span class="font-bold">Santo Domingo.</span> — La Dirección Central de Investigación (DICRIM) ha emitido una orden de captura prioritaria contra <span class="font-bold text-black bg-yellow-100 px-1">Jesús Reyes</span>, el individuo captado en cámaras de seguridad durante el asalto a una entidad bancaria ocurrido la tarde de este lunes.
+                </p>
+                <p>
+                    Según el informe preliminar de la Policía Nacional, Reyes habría ingresado a la sucursal armado, logrando sustraer una suma millonaria en efectivo antes de emprender la huida.
+                </p>
+                <p>
+                    "Estamos desplegando unidades en todo el territorio nacional. Exhortamos al señor Reyes a que se entregue por la vía que entienda pertinente para evitar enfrentamientos mayores", declaró el vocero de la institución en rueda de prensa.
+                </p>
+                <div class="bg-gray-50 p-4 border-l-4 border-gray-800 my-4">
+                    <p class="font-bold text-red-700 text-base italic">
+                        "Cualquier ciudadano que tenga información sobre su paradero debe contactar al 9-1-1 de inmediato. Se garantiza anonimato."
+                    </p>
+                </div>
+                <p>
+                    Las autoridades han advertido que el sospechoso podría estar armado y es considerado de alta peligrosidad.
+                </p>
+            </div>
+
+            <!-- Botón de Leer Más (Falso) -->
+            <div class="mt-8 flex justify-center">
+                <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold py-2 px-6 rounded-full text-sm border border-gray-300">
+                    Ver comentarios (342)
+                </button>
+            </div>
+
+        </main>
+
+        <!-- Barra Inferior Fija (Estilo Safari) -->
+        <div class="fixed bottom-0 left-0 right-0 bg-[#f8f8f8]/95 backdrop-blur border-t border-gray-300 h-20 flex justify-between items-start pt-3 px-6 text-gray-500 max-w-md mx-auto z-50">
+            <button class="hover:text-blue-500 transition">
+                <div class="w-5 h-5 border-l-2 border-b-2 border-blue-500 transform rotate-45 ml-1 mt-1"></div>
+            </button>
+            <button class="text-blue-500 hover:text-blue-600 transition">
+                <i data-lucide="share-2" class="w-6 h-6"></i>
+            </button>
+            <button class="text-blue-500 hover:text-blue-600 transition">
+                <i data-lucide="plus-circle" class="w-6 h-6"></i>
+            </button>
+            <button class="relative hover:opacity-70 transition">
+                <div class="w-5 h-5 border-2 border-gray-400 rounded-md mt-1"></div>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Inicializar Iconos Lucide -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
+
